@@ -2,16 +2,21 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setFilter } from 'components/redux/contactsSlice';
 import { ContactItem } from "./Contact";
 import { Filter } from "components/Filter";
+// import PropTypes from 'prop-types';
 import { listStyle } from "components/styles";
 
 export const ContactList = () => {
-  const contacts = useSelector((state) => state.contacts?.contacts);
-  const filter = useSelector((state) => state.contacts?.filter);
+  const contacts = useSelector((state) => state.contacts);
+  const filter = useSelector((state) => state.filter);
   const dispatch = useDispatch();
 
-  const filteredContacts = contacts?.filter((contact) =>
-    contact && contact.name && contact.name.toLowerCase().includes(filter?.toLowerCase())
-  ) || [];
+  // const filteredContacts = contacts.filter((contact) =>
+  //   contact.name.toLowerCase().includes(filter.toLowerCase())
+  // );
+  const filteredContacts = contacts.filter((contact) =>
+  contact && contact.name && contact.name.toLowerCase().includes(filter.toLowerCase())
+);
+
 
   const handleChange = (e) => {
     dispatch(setFilter(e.target.value));
@@ -27,7 +32,7 @@ export const ContactList = () => {
         <p>The contact list will be displayed here</p>
       ) : (
         <ul>
-          {filteredContacts.map((contact, index) => (
+          {filteredContacts.map((contact) => (
             <ContactItem key={contact.id} contact={contact} />
           ))}
         </ul>
@@ -36,27 +41,34 @@ export const ContactList = () => {
   );
 };
 
+// ContactList.propTypes = {
+//   contacts: PropTypes.arrayOf(
+//     PropTypes.shape({
+//       name: PropTypes.string.isRequired,
+//       number: PropTypes.string.isRequired,
+//     })
+//   ).isRequired,
+//   filter: PropTypes.string.isRequired,
+//   handleChange: PropTypes.func.isRequired,
+// };
+
+
 
 
 // import { useSelector, useDispatch } from 'react-redux';
 // import { setFilter } from 'components/redux/contactsSlice';
 // import { ContactItem } from "./Contact";
 // import { Filter } from "components/Filter";
-// // import PropTypes from 'prop-types';
 // import { listStyle } from "components/styles";
 
 // export const ContactList = () => {
-//   const contacts = useSelector((state) => state.contacts.contacts);
-//   const filter = useSelector((state) => state.contacts.filter);
+//   const contacts = useSelector((state) => state.contacts?.contacts);
+//   const filter = useSelector((state) => state.contacts?.filter);
 //   const dispatch = useDispatch();
 
-//   // const filteredContacts = contacts.filter((contact) =>
-//   //   contact.name.toLowerCase().includes(filter.toLowerCase())
-//   // );
-//   const filteredContacts = contacts.filter((contact) =>
-//   contact && contact.name && contact.name.toLowerCase().includes(filter.toLowerCase())
-// );
-
+//   const filteredContacts = contacts?.filter((contact) =>
+//     contact && contact.name && contact.name.toLowerCase().includes(filter?.toLowerCase())
+//   ) || [];
 
 //   const handleChange = (e) => {
 //     dispatch(setFilter(e.target.value));
@@ -79,17 +91,6 @@ export const ContactList = () => {
 //       )}
 //     </div>
 //   );
-// };
-
-// ContactList.propTypes = {
-//   contacts: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       name: PropTypes.string.isRequired,
-//       number: PropTypes.string.isRequired,
-//     })
-//   ).isRequired,
-//   filter: PropTypes.string.isRequired,
-//   handleChange: PropTypes.func.isRequired,
 // };
 
 

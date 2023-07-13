@@ -11,7 +11,6 @@ export const ContactForm = () => {
     e.preventDefault();
     const { name, number } = e.target.elements;
 
-    // Validation code
 
     const newContact = {
       id: nanoid(),
