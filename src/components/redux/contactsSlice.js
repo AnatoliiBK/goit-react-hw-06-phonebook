@@ -18,7 +18,6 @@ const contactsSlice = createSlice({
         return;
       }  
 
-    
     const phoneNumber = parsePhoneNumberFromString(number, 'UA');
       const formattedNumber = phoneNumber.formatInternational();
 
@@ -31,11 +30,13 @@ const contactsSlice = createSlice({
       }
       state.contacts.push({ id, name, number: formattedNumber });
     },
+
     deleteContact: (state, action) => {
       state.contacts = state.contacts.filter(
         (contact) => contact.id !== action.payload
       );
     },
+
     setFilter: (state, action) => {
       state.filter = action.payload;
     },
