@@ -18,7 +18,7 @@ const contactsSlice = createSlice({
         return;
       }  
 
-    const phoneNumber = parsePhoneNumberFromString(number, 'UA');
+      const phoneNumber = parsePhoneNumberFromString(number, 'UA');
       const formattedNumber = phoneNumber.formatInternational();
 
       const duplicateContact = state.contacts.find(
